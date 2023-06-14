@@ -1,0 +1,19 @@
+ // Set the contract owner at deployment
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Function to send tokens to multiple addresses
+    function sendMultipleTokens(
+        address tokenAddress,
+        address[] memory recipients,
+        uint256[] memory amounts
+    ) public payable {
+        // Check if the recipients and amounts arrays have the same length
+        require(
+            recipients.length == amounts.length,
+            "Recipients and amounts arrays must have the same length."
+        );
+
+        // Get the instance of the ERC20 token contract
+        IERC20 token = IERC20(tokenAddress);
